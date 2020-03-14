@@ -24,6 +24,7 @@ namespace Aplicacao
         public async Task<Personagens> ObterPersonagens(CancellationToken cancellationToken)
         {
             // TODO retornar view model
+            // fazer teste
             return await repositorioMarvel.ObterPersonagens(cancellationToken);
         }
 
