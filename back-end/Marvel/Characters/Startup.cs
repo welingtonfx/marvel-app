@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using System;
 
 namespace Characters
 {
@@ -31,6 +33,34 @@ namespace Characters
 
             services.AddMvc().AddNewtonsoftJson();
 
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc(
+                    "v1",
+                    new OpenApiInfo
+                    {
+                        Title = "marvel",
+                        Version = "v1",
+                        Description = "APIs - marvel",
+                        Contact = new OpenApiContact
+                        {
+                            Name = "Welington",
+                            //Url = new Uri("https://dextra.com.br")
+                        }
+                    });
+
+                ///var commentFileName = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                //var commentFilePath = Path.Combine(AppContext.BaseDirectory, commentFileName);
+                //options.IncludeXmlComments(commentFilePath);
+                //options.CustomSchemaIds(x =>
+                    //x.ToString().Replace("`1", string.Empty).Replace("[", "<").Replace("]", ">"));
+            });
+
+            services.AddSwaggerGenNewtonsoftSupport();
+
+
+
+
             services.AddScoped<IRepositorioMarvel, RepositorioMarvel>();
             services.AddScoped<IServicoAplicacaoMarvel, ServicoAplicacaoMarvel>();
         }
@@ -54,6 +84,12 @@ namespace Characters
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.RoutePrefix = string.Empty;
+                c.SwaggerEndpoint("./swagger/v1/swagger.json", "apis");
             });
         }
     }
