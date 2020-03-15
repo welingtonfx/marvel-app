@@ -6,6 +6,7 @@ using Dominio.Model.Personagem;
 using Dominio.Model.Personagens;
 using Dominio.Model.Quadrinhos;
 using Dominio.Model.Series;
+using Infra.Comum;
 using Newtonsoft.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,6 +28,9 @@ namespace Infra.Repositorio
         {
             var resultado = await marvelAPIConnector.ObterGetResponse(charactersURL, cancellationToken);
 
+            if (!resultado.IsSuccessful)
+                throw new MarvelException() { StatusCode = resultado.StatusCode, StatusMessage = resultado.StatusDescription };
+
             return resultado.IsSuccessful ? JsonConvert.DeserializeObject<Personagens>(resultado.Content) : null;
         }
 
@@ -34,13 +38,18 @@ namespace Infra.Repositorio
         {
             var resultado = await marvelAPIConnector.ObterGetResponse($"{charactersURL}/{id}", cancellationToken);
 
-            return resultado.IsSuccessful ? JsonConvert.DeserializeObject<Personagem>(resultado.Content) : null;
+            if (!resultado.IsSuccessful)
+                throw new MarvelException() { StatusCode = resultado.StatusCode, StatusMessage = resultado.StatusDescription };
 
+            return resultado.IsSuccessful ? JsonConvert.DeserializeObject<Personagem>(resultado.Content) : null;
         }
 
         public async Task<Quadrinhos> ObterQuadrinhos(int id, CancellationToken cancellationToken)
         {
             var resultado = await marvelAPIConnector.ObterGetResponse($"{charactersURL}/{id}/comics", cancellationToken);
+
+            if (!resultado.IsSuccessful)
+                throw new MarvelException() { StatusCode = resultado.StatusCode, StatusMessage = resultado.StatusDescription };
 
             return resultado.IsSuccessful ? JsonConvert.DeserializeObject<Quadrinhos>(resultado.Content) : null;
         }
@@ -49,6 +58,9 @@ namespace Infra.Repositorio
         {
             var resultado = await marvelAPIConnector.ObterGetResponse($"{charactersURL}/{id}/events", cancellationToken);
 
+            if (!resultado.IsSuccessful)
+                throw new MarvelException() { StatusCode = resultado.StatusCode, StatusMessage = resultado.StatusDescription };
+
             return resultado.IsSuccessful ? JsonConvert.DeserializeObject<Eventos>(resultado.Content) : null;
         }
 
@@ -56,12 +68,18 @@ namespace Infra.Repositorio
         {
             var resultado = await marvelAPIConnector.ObterGetResponse($"{charactersURL}/{id}/series", cancellationToken);
 
+            if (!resultado.IsSuccessful)
+                throw new MarvelException() { StatusCode = resultado.StatusCode, StatusMessage = resultado.StatusDescription };
+
             return resultado.IsSuccessful ? JsonConvert.DeserializeObject<Series>(resultado.Content) : null;
         }
 
         public async Task<Historias> ObterHistorias(int id, CancellationToken cancellationToken)
         {
             var resultado = await marvelAPIConnector.ObterGetResponse($"{charactersURL}/{id}/stories", cancellationToken);
+
+            if (!resultado.IsSuccessful)
+                throw new MarvelException() { StatusCode = resultado.StatusCode, StatusMessage = resultado.StatusDescription };
 
             return resultado.IsSuccessful ? JsonConvert.DeserializeObject<Historias>(resultado.Content) : null;
         }

@@ -1,5 +1,6 @@
 ﻿using Dominio.Interface.Aplicacao;
 using Dominio.ViewModel;
+using Infra.Comum;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading;
@@ -23,9 +24,16 @@ namespace API.Controllers
         [HttpGet("obterpersonagens")]
         public async Task<ActionResult<IEnumerable<PersonagensViewModel>>> ObterPersonagens(CancellationToken cancellationToken = default)
         {
-            var result = await this.servicoAplicacaoMarvel.ObterPersonagens(cancellationToken);
+            try
+            {
+                var result = await this.servicoAplicacaoMarvel.ObterPersonagens(cancellationToken);
 
-             return Ok(result);
+                return Ok(result);
+            }
+            catch (MarvelException ex) when (ex.StatusCode == System.Net.HttpStatusCode.Conflict)
+            {
+                return Conflict(new { Erro = ex.StatusMessage });
+            }
         }
 
         [HttpGet("obterpersonagem/{id}")]
@@ -37,45 +45,70 @@ namespace API.Controllers
 
                 return Ok(result);
             }
-            catch (System.Exception ex)
+            catch (MarvelException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-                if (ex.Message == "404")
-                    return NotFound();
-
-                return null;
+                return NotFound();
             }
         }
 
         [HttpGet("obterpersonagem/{id}/quadrinhos")]
         public async Task<ActionResult<IEnumerable<QuadrinhoViewModel>>> ObterQuadrinhos(int id, CancellationToken cancellationToken = default)
         {
-            var result = await this.servicoAplicacaoMarvel.ObterQuadrinhos(id, cancellationToken);
+            try
+            {
+                var result = await this.servicoAplicacaoMarvel.ObterQuadrinhos(id, cancellationToken);
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (MarvelException ex) when (ex.StatusCode == System.Net.HttpStatusCode.Conflict)
+            {
+                return Conflict(new { Erro = ex.StatusMessage });
+            }
         }
 
         [HttpGet("obterpersonagem/{id}/eventos")]
         public async Task<ActionResult<IEnumerable<EventoViewModel>>> ObterEventos(int id, CancellationToken cancellationToken = default)
         {
-            var result = await this.servicoAplicacaoMarvel.ObterEventos(id, cancellationToken);
+            try
+            {
+                var result = await this.servicoAplicacaoMarvel.ObterEventos(id, cancellationToken);
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (MarvelException ex) when (ex.StatusCode == System.Net.HttpStatusCode.Conflict)
+            {
+                return Conflict(new { Erro = ex.StatusMessage });
+            }
         }
 
         [HttpGet("obterpersonagem/{id}/series")]
         public async Task<ActionResult<IEnumerable<SerieViewModel>>> ObterSeries(int id, CancellationToken cancellationToken = default)
         {
-            var result = await this.servicoAplicacaoMarvel.ObterSeries(id, cancellationToken);
+            try
+            {
+                var result = await this.servicoAplicacaoMarvel.ObterSeries(id, cancellationToken);
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (MarvelException ex) when (ex.StatusCode == System.Net.HttpStatusCode.Conflict)
+            {
+                return Conflict(new { Erro = ex.StatusMessage });
+            }
         }
 
         [HttpGet("obterpersonagem/{id}/historias")]
         public async Task<ActionResult<IEnumerable<HistoriaViewModel>>> ObterHistorias(int id, CancellationToken cancellationToken = default)
         {
-            var result = await this.servicoAplicacaoMarvel.ObterHistorias(id, cancellationToken);
+            try
+            {
+                var result = await this.servicoAplicacaoMarvel.ObterHistorias(id, cancellationToken);
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (MarvelException ex) when (ex.StatusCode == System.Net.HttpStatusCode.Conflict)
+            {
+                return Conflict(new { Erro = ex.StatusMessage });
+            }
         }
     }
 }
