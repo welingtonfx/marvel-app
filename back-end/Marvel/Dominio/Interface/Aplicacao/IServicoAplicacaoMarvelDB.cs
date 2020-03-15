@@ -6,7 +6,7 @@ namespace Dominio.Interface.Aplicacao
 {
     public interface IServicoAplicacaoMarvelDB
     {
-        Task<IEnumerable<PersonagensViewModel>> ObterPersonagens();
+        Task<IEnumerable<PersonagemViewModel>> ObterPersonagens();
         Task<PersonagemViewModel> ObterPersonagem(int id);
         Task<IEnumerable<QuadrinhoViewModel>> ObterQuadrinhos(int idPersonagem);
         Task<IEnumerable<EventoViewModel>> ObterEventos(int idPersonagem);

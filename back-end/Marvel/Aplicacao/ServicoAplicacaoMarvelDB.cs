@@ -3,6 +3,7 @@ using Dominio.Interface.Infra;
 using Dominio.ViewModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Aplicacao
 {
@@ -15,34 +16,41 @@ namespace Aplicacao
             this.repositorioMarvelDB = repositorioMarvel;
         }
 
-        public async Task<IEnumerable<PersonagensViewModel>> ObterPersonagens()
+        public async Task<IEnumerable<PersonagemViewModel>> ObterPersonagens()
         {
-            return await repositorioMarvelDB.ObterPersonagens();
+            var resultado = await repositorioMarvelDB.ObterPersonagens();
+
+            return resultado.Select(personagem => (PersonagemViewModel)personagem);
         }
 
         public async Task<PersonagemViewModel> ObterPersonagem(int id)
         {
-            return await repositorioMarvelDB.ObterPersonagem(id);
+            var resultado = await repositorioMarvelDB.ObterPersonagem(id);
+            return resultado != null ? (PersonagemViewModel)resultado : null;
         }
 
         public async Task<IEnumerable<QuadrinhoViewModel>> ObterQuadrinhos(int idPersonagem)
         {
-            return await repositorioMarvelDB.ObterQuadrinhos(idPersonagem);
+            var resultado = await repositorioMarvelDB.ObterQuadrinhos(idPersonagem);
+            return resultado.Select(quadrinho => (QuadrinhoViewModel)quadrinho);
         }
 
         public async Task<IEnumerable<EventoViewModel>> ObterEventos(int idPersonagem)
         {
-            return await repositorioMarvelDB.ObterEventos(idPersonagem);
+            var resultado = await repositorioMarvelDB.ObterEventos(idPersonagem);
+            return resultado.Select(evento => (EventoViewModel)evento);
         }
 
         public async Task<IEnumerable<SerieViewModel>> ObterSeries(int idPersonagem)
         {
-            return await repositorioMarvelDB.ObterSeries(idPersonagem);
+            var resultado = await repositorioMarvelDB.ObterSeries(idPersonagem);
+            return resultado.Select(serie => (SerieViewModel)serie);
         }
 
         public async Task<IEnumerable<HistoriaViewModel>> ObterHistorias(int idPersonagem)
         {
-            return await repositorioMarvelDB.ObterHistorias(idPersonagem);
+            var resultado = await repositorioMarvelDB.ObterHistorias(idPersonagem);
+            return resultado.Select(historia => (HistoriaViewModel)historia);
         }
     }
 }

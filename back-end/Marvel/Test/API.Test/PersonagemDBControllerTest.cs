@@ -26,13 +26,13 @@ namespace Test.API.Test
         [Fact]
         public async Task RotaPersonagensDeveRetornarTiposCorretos()
         {
-            var personagens = _fixture.CreateMany<PersonagensViewModel>();
+            var personagens = _fixture.CreateMany<PersonagemViewModel>();
 
             servicoAplicacaoMarvel.Setup(p => p.ObterPersonagens()).ReturnsAsync(personagens);
 
             var retorno = await personagemController.ObterPersonagens();
 
-            Assert.IsType<ActionResult<IEnumerable<PersonagensViewModel>>>(retorno);
+            Assert.IsType<ActionResult<IEnumerable<PersonagemViewModel>>>(retorno);
             Assert.IsType<OkObjectResult>(retorno.Result);
         }
 

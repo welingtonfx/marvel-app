@@ -20,7 +20,7 @@ namespace API.Controllers
         }
 
         [HttpGet("obterpersonagens")]
-        public async Task<ActionResult<IEnumerable<PersonagensViewModel>>> ObterPersonagens()
+        public async Task<ActionResult<IEnumerable<PersonagemViewModel>>> ObterPersonagens()
         {
             var result = await this.servicoAplicacaoMarvelDB.ObterPersonagens();
 

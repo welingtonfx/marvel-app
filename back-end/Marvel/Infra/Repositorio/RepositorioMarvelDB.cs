@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Dominio.Interface.Infra;
+using Dominio.Model;
 using Dominio.ViewModel;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
@@ -19,57 +20,57 @@ namespace Infra.Repositorio
             this.ConnectionString = configuration.GetSection("Marvel").GetSection("DatabaseConnection").GetSection("ConnectionString").Value;
         }
 
-        public async Task<IEnumerable<PersonagensViewModel>> ObterPersonagens()
+        public async Task<IEnumerable<PersonagemDB>> ObterPersonagens()
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(ConnectionString))
             {
                 var sql = @"SELECT * FROM public.personagem";
-                return await conexao.QueryAsync<PersonagensViewModel>(sql);
+                return await conexao.QueryAsync<PersonagemDB>(sql);
             }
         }
 
-        public async Task<PersonagemViewModel> ObterPersonagem(int id)
+        public async Task<PersonagemDB> ObterPersonagem(int id)
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(ConnectionString))
             {
                 var sql = @"SELECT * FROM public.personagem WHERE id = @Id";
-                return await conexao.QueryFirstOrDefaultAsync<PersonagemViewModel>(sql, new { id });
+                return await conexao.QueryFirstOrDefaultAsync<PersonagemDB>(sql, new { id });
             }
         }
 
-        public async Task<IEnumerable<QuadrinhoViewModel>> ObterQuadrinhos(int idPersonagem)
+        public async Task<IEnumerable<QuadrinhoDB>> ObterQuadrinhos(int idPersonagem)
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(ConnectionString))
             {
                 var sql = @"SELECT * FROM public.quadrinho WHERE idcharacter = @IdPersonagem";
-                return await conexao.QueryAsync<QuadrinhoViewModel>(sql, new { idPersonagem });
+                return await conexao.QueryAsync<QuadrinhoDB>(sql, new { idPersonagem });
             }
         }
 
-        public async Task<IEnumerable<EventoViewModel>> ObterEventos(int idPersonagem)
+        public async Task<IEnumerable<EventoDB>> ObterEventos(int idPersonagem)
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(ConnectionString))
             {
                 var sql = @"SELECT * FROM public.evento WHERE idcharacter = @IdPersonagem";
-                return await conexao.QueryAsync<EventoViewModel>(sql, new { idPersonagem });
+                return await conexao.QueryAsync<EventoDB>(sql, new { idPersonagem });
             }
         }
 
-        public async Task<IEnumerable<SerieViewModel>> ObterSeries(int idPersonagem)
+        public async Task<IEnumerable<SerieDB>> ObterSeries(int idPersonagem)
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(ConnectionString))
             {
                 var sql = @"SELECT * FROM public.serie WHERE idcharacter = @IdPersonagem";
-                return await conexao.QueryAsync<SerieViewModel>(sql, new { idPersonagem });
+                return await conexao.QueryAsync<SerieDB>(sql, new { idPersonagem });
             }
         }
 
-        public async Task<IEnumerable<HistoriaViewModel>> ObterHistorias(int idPersonagem)
+        public async Task<IEnumerable<HistoriaDB>> ObterHistorias(int idPersonagem)
         {
             using (NpgsqlConnection conexao = new NpgsqlConnection(ConnectionString))
             {
                 var sql = @"SELECT * FROM public.historia WHERE idcharacter = @IdPersonagem";
-                return await conexao.QueryAsync<HistoriaViewModel>(sql, new { idPersonagem });
+                return await conexao.QueryAsync<HistoriaDB>(sql, new { idPersonagem });
             }
         }
     }

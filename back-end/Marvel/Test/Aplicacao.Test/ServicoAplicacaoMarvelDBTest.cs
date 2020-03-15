@@ -1,6 +1,7 @@
 ﻿using Aplicacao;
 using AutoFixture;
 using Dominio.Interface.Infra;
+using Dominio.Model;
 using Dominio.ViewModel;
 using Moq;
 using System.Collections.Generic;
@@ -28,13 +29,13 @@ namespace Test.Aplicacao.Test
         [Fact]
         public async Task DeveRetornarListaComTodosOsPersonagens()
         {
-            var personagens = _fixture.CreateMany<PersonagensViewModel>();
+            var personagens = _fixture.CreateMany<PersonagemDB>();
 
             _repositorioMarvelMock.Setup(f => f.ObterPersonagens()).ReturnsAsync(personagens);
 
             var result = await _servicoAplicacaoMarvel.ObterPersonagens();
 
-            Assert.IsType<List<PersonagensViewModel>>(result.ToList());
+            Assert.IsType<List<PersonagemViewModel>>(result.ToList());
             Assert.NotNull(result);
         }
 
@@ -46,7 +47,7 @@ namespace Test.Aplicacao.Test
             var result = await _servicoAplicacaoMarvel.ObterPersonagens();
 
             Assert.NotNull(result);
-            Assert.IsType<List<PersonagensViewModel>>(result.ToList());
+            Assert.IsType<List<PersonagemViewModel>>(result.ToList());
             Assert.Empty(result);
         }
 
@@ -55,7 +56,7 @@ namespace Test.Aplicacao.Test
         [Fact]
         public async Task DeveRetornarListaDePersonagemQuandoExistir()
         {
-            var personagem = _fixture.Create<PersonagemViewModel>();
+            var personagem = _fixture.Create<PersonagemDB>();
 
             _repositorioMarvelMock.Setup(f => f.ObterPersonagem(It.IsAny<int>())).ReturnsAsync(personagem);
 
@@ -79,7 +80,7 @@ namespace Test.Aplicacao.Test
         [Fact]
         public async Task DeveRetornarListaDeEventosQuandoExistir()
         {
-            var eventos = _fixture.CreateMany<EventoViewModel>();
+            var eventos = _fixture.CreateMany<EventoDB>();
 
             _repositorioMarvelMock.Setup(f => f.ObterEventos(It.IsAny<int>())).ReturnsAsync(eventos);
 
@@ -105,7 +106,7 @@ namespace Test.Aplicacao.Test
         [Fact]
         public async Task DeveRetornarListaDeQuadrinhosQuandoExistir()
         {
-            var quadrinhos = _fixture.CreateMany<QuadrinhoViewModel>();
+            var quadrinhos = _fixture.CreateMany<QuadrinhoDB>();
 
             _repositorioMarvelMock.Setup(f => f.ObterQuadrinhos(It.IsAny<int>())).ReturnsAsync(quadrinhos);
 
@@ -131,7 +132,7 @@ namespace Test.Aplicacao.Test
         [Fact]
         public async Task DeveRetornarListaDeHistoriasQuandoExistir()
         {
-            var historias = _fixture.CreateMany<HistoriaViewModel>();
+            var historias = _fixture.CreateMany<HistoriaDB>();
 
             _repositorioMarvelMock.Setup(f => f.ObterHistorias(It.IsAny<int>())).ReturnsAsync(historias);
 
@@ -157,7 +158,7 @@ namespace Test.Aplicacao.Test
         [Fact]
         public async Task DeveRetornarListaDeSeriesQuandoExistir()
         {
-            var series = _fixture.CreateMany<SerieViewModel>();
+            var series = _fixture.CreateMany<SerieDB>();
 
             _repositorioMarvelMock.Setup(f => f.ObterSeries(It.IsAny<int>())).ReturnsAsync(series);
 

@@ -1,4 +1,4 @@
-﻿using Dominio.ViewModel;
+﻿using Dominio.Model;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,11 +6,11 @@ namespace Dominio.Interface.Infra
 {
     public interface IRepositorioMarvelDB
     {
-        Task<IEnumerable<PersonagensViewModel>> ObterPersonagens();
-        Task<PersonagemViewModel> ObterPersonagem(int id);
-        Task<IEnumerable<QuadrinhoViewModel>> ObterQuadrinhos(int idPersonagem);
-        Task<IEnumerable<EventoViewModel>> ObterEventos(int idPersonagem);
-        Task<IEnumerable<SerieViewModel>> ObterSeries(int idPersonagem);
-        Task<IEnumerable<HistoriaViewModel>> ObterHistorias(int idPersonagem);
+        Task<IEnumerable<PersonagemDB>> ObterPersonagens();
+        Task<PersonagemDB> ObterPersonagem(int id);
+        Task<IEnumerable<QuadrinhoDB>> ObterQuadrinhos(int idPersonagem);
+        Task<IEnumerable<EventoDB>> ObterEventos(int idPersonagem);
+        Task<IEnumerable<SerieDB>> ObterSeries(int idPersonagem);
+        Task<IEnumerable<HistoriaDB>> ObterHistorias(int idPersonagem);
     }
 }
