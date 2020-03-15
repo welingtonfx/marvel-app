@@ -18,17 +18,17 @@ using Xunit;
 namespace Test.Aplicacao.Test
 {
 
-    public class ServicoAplicacaoMarvelTest
+    public class ServicoAplicacaoMarvelAPITest
     {
         private readonly Fixture _fixture;
-        private readonly Mock<IRepositorioMarvel> _repositorioMarvelMock;
-        private readonly ServicoAplicacaoMarvel _servicoAplicacaoMarvel;
+        private readonly Mock<IRepositorioMarvelAPI> _repositorioMarvelMock;
+        private readonly ServicoAplicacaoMarvelAPI _servicoAplicacaoMarvel;
 
-        public ServicoAplicacaoMarvelTest()
+        public ServicoAplicacaoMarvelAPITest()
         {
             _fixture = new Fixture();
-            _repositorioMarvelMock = new Mock<IRepositorioMarvel>();
-            _servicoAplicacaoMarvel = new ServicoAplicacaoMarvel(_repositorioMarvelMock.Object);
+            _repositorioMarvelMock = new Mock<IRepositorioMarvelAPI>();
+            _servicoAplicacaoMarvel = new ServicoAplicacaoMarvelAPI(_repositorioMarvelMock.Object);
         }
 
         // Personagens

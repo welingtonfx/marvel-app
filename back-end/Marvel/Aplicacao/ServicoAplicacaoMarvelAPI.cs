@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Aplicacao
 {
-    public class ServicoAplicacaoMarvel : IServicoAplicacaoMarvel
+    public class ServicoAplicacaoMarvelAPI : IServicoAplicacaoMarvelAPI
     {
-        private readonly IRepositorioMarvel repositorioMarvel;
+        private readonly IRepositorioMarvelAPI repositorioMarvel;
 
-        public ServicoAplicacaoMarvel(IRepositorioMarvel repositorioMarvel)
+        public ServicoAplicacaoMarvelAPI(IRepositorioMarvelAPI repositorioMarvel)
         {
             this.repositorioMarvel = repositorioMarvel;
         }

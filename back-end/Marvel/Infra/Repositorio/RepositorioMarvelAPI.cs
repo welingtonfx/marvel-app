@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace Infra.Repositorio
 {
-    public class RepositorioMarvel : IRepositorioMarvel
+    public class RepositorioMarvelAPI : IRepositorioMarvelAPI
     {
         private const string charactersURL = "/characters";
 
         private readonly IMarvelAPIConnector marvelAPIConnector;
 
-        public RepositorioMarvel(IMarvelAPIConnector marvelAPIConnector)
+        public RepositorioMarvelAPI(IMarvelAPIConnector marvelAPIConnector)
         {
             this.marvelAPIConnector = marvelAPIConnector;
         }

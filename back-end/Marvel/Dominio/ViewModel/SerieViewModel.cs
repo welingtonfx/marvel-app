@@ -1,5 +1,4 @@
 ﻿using Dominio.Model.Series;
-using System;
 
 namespace Dominio.ViewModel
 {

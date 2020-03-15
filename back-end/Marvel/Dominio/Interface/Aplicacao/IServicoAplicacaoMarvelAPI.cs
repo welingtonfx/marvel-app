@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.Interface.Aplicacao
 {
-    public interface IServicoAplicacaoMarvel
+    public interface IServicoAplicacaoMarvelAPI
     {
         Task<IEnumerable<PersonagensViewModel>> ObterPersonagens(CancellationToken cancellationToken);
         Task<IEnumerable<PersonagemViewModel>> ObterPersonagem(int id, CancellationToken cancellationToken);

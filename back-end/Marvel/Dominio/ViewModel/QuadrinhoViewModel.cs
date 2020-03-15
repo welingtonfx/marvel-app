@@ -1,5 +1,4 @@
 ﻿using Dominio.Model.Quadrinhos;
-using System;
 
 namespace Dominio.ViewModel
 {

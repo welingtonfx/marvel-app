@@ -11,16 +11,16 @@ using Xunit;
 
 namespace Test.API.Test
 {
-    public class MarvelControllerTest
+    public class PersonagemAPIControllerTest
     {
-        private PersonagemController personagemController;
-        private readonly Mock<IServicoAplicacaoMarvel> servicoAplicacaoMarvel;
+        private PersonagemAPIController personagemController;
+        private readonly Mock<IServicoAplicacaoMarvelAPI> servicoAplicacaoMarvel;
         private readonly Fixture _fixture;
-        public MarvelControllerTest()
+        public PersonagemAPIControllerTest()
         {
             _fixture = new Fixture();
-            servicoAplicacaoMarvel = new Mock<IServicoAplicacaoMarvel>();
-            personagemController = new PersonagemController(servicoAplicacaoMarvel.Object);
+            servicoAplicacaoMarvel = new Mock<IServicoAplicacaoMarvelAPI>();
+            personagemController = new PersonagemAPIController(servicoAplicacaoMarvel.Object);
         }
 
         [Fact]

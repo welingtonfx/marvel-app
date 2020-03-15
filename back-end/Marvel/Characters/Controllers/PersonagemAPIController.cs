@@ -11,11 +11,11 @@ namespace API.Controllers
     [Route("api/[controller]")]
     [Consumes("application/json")]
     [Produces("application/json")]
-    public class PersonagemController : ControllerBase
+    public class PersonagemAPIController : ControllerBase
     {
-        private readonly IServicoAplicacaoMarvel servicoAplicacaoMarvel;
+        private readonly IServicoAplicacaoMarvelAPI servicoAplicacaoMarvel;
 
-        public PersonagemController(IServicoAplicacaoMarvel servicoAplicacaoMarvel)
+        public PersonagemAPIController(IServicoAplicacaoMarvelAPI servicoAplicacaoMarvel)
         {
             this.servicoAplicacaoMarvel = servicoAplicacaoMarvel;
         }
