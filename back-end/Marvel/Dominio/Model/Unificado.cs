@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Dominio.Model
 {
@@ -36,7 +34,6 @@ namespace Dominio.Model
     {
         public int available { get; set; }
         public string collectionURI { get; set; }
-        //public List<Item2> items { get; set; }
         public List<Item> items { get; set; }
         public int returned { get; set; }
     }
@@ -45,7 +42,6 @@ namespace Dominio.Model
     {
         public int available { get; set; }
         public string collectionURI { get; set; }
-        //public List<Item3> items { get; set; }
         public List<Item> items { get; set; }
         public int returned { get; set; }
     }
@@ -55,7 +51,6 @@ namespace Dominio.Model
         public int available { get; set; }
         public string collectionURI { get; set; }
         public List<Item> items { get; set; }
-        //public List<Item4> items { get; set; }
         public int returned { get; set; }
     }
 
@@ -63,7 +58,6 @@ namespace Dominio.Model
     {
         public int available { get; set; }
         public string collectionURI { get; set; }
-        //public List<Item5> items { get; set; }
         public List<Item> items { get; set; }
         public int returned { get; set; }
         public string resourceURI { get; set; }

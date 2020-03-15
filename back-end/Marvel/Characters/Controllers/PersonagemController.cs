@@ -1,13 +1,7 @@
 ﻿using Dominio.Interface.Aplicacao;
-using Dominio.Model;
-using Dominio.Model.Eventos;
-using Dominio.Model.Historias;
-using Dominio.Model.Personagem;
-using Dominio.Model.Personagens;
-using Dominio.Model.Quadrinhos;
-using Dominio.Model.SeriesX;
+using Dominio.ViewModel;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,7 +21,7 @@ namespace API.Controllers
         }
 
         [HttpGet("obterpersonagens")]
-        public async Task<ActionResult<Personagens>> ObterPersonagens(CancellationToken cancellationToken = default)
+        public async Task<ActionResult<IEnumerable<PersonagensViewModel>>> ObterPersonagens(CancellationToken cancellationToken = default)
         {
             var result = await this.servicoAplicacaoMarvel.ObterPersonagens(cancellationToken);
 
@@ -35,7 +29,7 @@ namespace API.Controllers
         }
 
         [HttpGet("obterpersonagem/{id}")]
-        public async Task<ActionResult<Personagem>> ObterPersonagem(int id, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<IEnumerable<PersonagemViewModel>>> ObterPersonagem(int id, CancellationToken cancellationToken = default)
         {
             try
             {
@@ -53,7 +47,7 @@ namespace API.Controllers
         }
 
         [HttpGet("obterpersonagem/{id}/quadrinhos")]
-        public async Task<ActionResult<Quadrinhos>> ObterQuadrinhos(int id, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<IEnumerable<QuadrinhoViewModel>>> ObterQuadrinhos(int id, CancellationToken cancellationToken = default)
         {
             var result = await this.servicoAplicacaoMarvel.ObterQuadrinhos(id, cancellationToken);
 
@@ -61,7 +55,7 @@ namespace API.Controllers
         }
 
         [HttpGet("obterpersonagem/{id}/eventos")]
-        public async Task<ActionResult<Eventos>> ObterEventos(int id, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<IEnumerable<EventoViewModel>>> ObterEventos(int id, CancellationToken cancellationToken = default)
         {
             var result = await this.servicoAplicacaoMarvel.ObterEventos(id, cancellationToken);
 
@@ -69,7 +63,7 @@ namespace API.Controllers
         }
 
         [HttpGet("obterpersonagem/{id}/series")]
-        public async Task<ActionResult<Series>> ObterSeries(int id, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<IEnumerable<SerieViewModel>>> ObterSeries(int id, CancellationToken cancellationToken = default)
         {
             var result = await this.servicoAplicacaoMarvel.ObterSeries(id, cancellationToken);
 
@@ -77,7 +71,7 @@ namespace API.Controllers
         }
 
         [HttpGet("obterpersonagem/{id}/historias")]
-        public async Task<ActionResult<Historias>> ObterHistorias(int id, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<IEnumerable<HistoriaViewModel>>> ObterHistorias(int id, CancellationToken cancellationToken = default)
         {
             var result = await this.servicoAplicacaoMarvel.ObterHistorias(id, cancellationToken);
 

@@ -5,7 +5,7 @@ using Dominio.Model.Historias;
 using Dominio.Model.Personagem;
 using Dominio.Model.Personagens;
 using Dominio.Model.Quadrinhos;
-using Dominio.Model.SeriesX;
+using Dominio.Model.Series;
 using Newtonsoft.Json;
 using System.Threading;
 using System.Threading.Tasks;

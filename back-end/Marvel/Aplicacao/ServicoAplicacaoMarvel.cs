@@ -1,12 +1,8 @@
 ﻿using Dominio.Interface.Aplicacao;
 using Dominio.Interface.Infra;
-using Dominio.Model;
-using Dominio.Model.Eventos;
-using Dominio.Model.Historias;
-using Dominio.Model.Personagem;
-using Dominio.Model.Personagens;
-using Dominio.Model.Quadrinhos;
-using Dominio.Model.SeriesX;
+using Dominio.ViewModel;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,36 +17,48 @@ namespace Aplicacao
             this.repositorioMarvel = repositorioMarvel;
         }
 
-        public async Task<Personagens> ObterPersonagens(CancellationToken cancellationToken)
+        public async Task<IEnumerable<PersonagensViewModel>> ObterPersonagens(CancellationToken cancellationToken)
         {
-            // TODO retornar view model
-            // fazer teste
-            return await repositorioMarvel.ObterPersonagens(cancellationToken);
+            var personagens = await repositorioMarvel.ObterPersonagens(cancellationToken);
+
+            return personagens.data.results.Select(personagem => (PersonagensViewModel)personagem);
         }
 
-        public async Task<Personagem> ObterPersonagem(int id, CancellationToken cancellationToken)
+        public async Task<IEnumerable<PersonagemViewModel>> ObterPersonagem(int id, CancellationToken cancellationToken)
         {
-            return await repositorioMarvel.ObterPersonagem(id, cancellationToken);
+            var personagem = await repositorioMarvel.ObterPersonagem(id, cancellationToken);
+
+            return personagem.data.results.Select(personagem => (PersonagemViewModel)personagem);
         }
 
-        public async Task<Quadrinhos> ObterQuadrinhos(int id, CancellationToken cancellationToken)
+        public async Task<IEnumerable<QuadrinhoViewModel>> ObterQuadrinhos(int id, CancellationToken cancellationToken)
         {
-            return await repositorioMarvel.ObterQuadrinhos(id, cancellationToken);
+            var quadrinhos = await repositorioMarvel.ObterQuadrinhos(id, cancellationToken);
+
+            return quadrinhos.data.results.Select(quadrinho => (QuadrinhoViewModel)quadrinho);
+
         }
 
-        public async Task<Eventos> ObterEventos(int id, CancellationToken cancellationToken)
+        public async Task<IEnumerable<EventoViewModel>> ObterEventos(int id, CancellationToken cancellationToken)
         {
-            return await repositorioMarvel.ObterEventos(id, cancellationToken);
+            var eventos = await repositorioMarvel.ObterEventos(id, cancellationToken);
+
+            return eventos.data.results.Select(evento => (EventoViewModel)evento);
         }
 
-        public async Task<Series> ObterSeries(int id, CancellationToken cancellationToken)
+        public async Task<IEnumerable<SerieViewModel>> ObterSeries(int id, CancellationToken cancellationToken)
         {
-            return await repositorioMarvel.ObterSeries(id, cancellationToken);
+            var series = await repositorioMarvel.ObterSeries(id, cancellationToken);
+
+            return series.data.results.Select(series => (SerieViewModel)series);
+
         }
 
-        public async Task<Historias> ObterHistorias(int id, CancellationToken cancellationToken)
+        public async Task<IEnumerable<HistoriaViewModel>> ObterHistorias(int id, CancellationToken cancellationToken)
         {
-            return await repositorioMarvel.ObterHistorias(id, cancellationToken);
+            var historias = await repositorioMarvel.ObterHistorias(id, cancellationToken);
+
+            return historias.data.results.Select(historia => (HistoriaViewModel)historia);
         }
     }
 }
