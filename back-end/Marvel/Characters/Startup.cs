@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 
 namespace Characters
 {
@@ -46,7 +47,7 @@ namespace Characters
                         Contact = new OpenApiContact
                         {
                             Name = "Welington",
-                            Url = "https://github.com/welingtonfx"
+                            Url = new Uri("https://github.com/welingtonfx")
                         }
                     });
             });

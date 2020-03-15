@@ -157,9 +157,9 @@ namespace Test.Aplicacao.Test
         [Fact]
         public async Task DeveRetornarListaDeSeriesQuandoExistir()
         {
-            var historias = _fixture.Create<Series>();
+            var series = _fixture.Create<Series>();
 
-            _repositorioMarvelMock.Setup(f => f.ObterSeries(It.IsAny<int>(), It.IsAny<CancellationToken>())).ReturnsAsync(historias);
+            _repositorioMarvelMock.Setup(f => f.ObterSeries(It.IsAny<int>(), It.IsAny<CancellationToken>())).ReturnsAsync(series);
 
             var result = await _servicoAplicacaoMarvel.ObterSeries(It.IsAny<int>(), It.IsAny<CancellationToken>());
 
