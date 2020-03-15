@@ -15,11 +15,11 @@ namespace Test.Repositorio.Test
 {
     public class RepositorioMarvelTest
     {
-        private readonly Fixture _fixture;
-        private readonly RepositorioMarvel _repositorioMarvel;
+        //private readonly Fixture _fixture;
+        //private readonly RepositorioMarvel _repositorioMarvel;
 
-        private readonly Mock<IRestClient> _restClient;
-        private readonly Mock<IRestRequest> _restRequest;
+        //private readonly Mock<IRestClient> _restClient;
+        //private readonly Mock<IRestRequest> _restRequest;
         
 
 

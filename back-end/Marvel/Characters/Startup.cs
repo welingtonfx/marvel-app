@@ -1,6 +1,8 @@
 using Aplicacao;
+using Dominio.Interface;
 using Dominio.Interface.Aplicacao;
 using Dominio.Interface.Infra;
+using Infra.Comum;
 using Infra.Repositorio;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -45,7 +47,7 @@ namespace Characters
                         Contact = new OpenApiContact
                         {
                             Name = "Welington",
-                            //Url = new Uri("https://dextra.com.br")
+                            //Url = new Uri("")
                         }
                     });
 
@@ -61,8 +63,12 @@ namespace Characters
 
 
 
+            services.AddSingleton<IConfiguration>(Configuration);
             services.AddScoped<IRepositorioMarvel, RepositorioMarvel>();
             services.AddScoped<IServicoAplicacaoMarvel, ServicoAplicacaoMarvel>();
+            services.AddScoped<IMarvelHasher, MarvelHasher>();
+            services.AddScoped<IMarvelAPIConnector, MarvelAPIConnector>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

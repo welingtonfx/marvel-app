@@ -37,9 +37,19 @@ namespace API.Controllers
         [HttpGet("obterpersonagem/{id}")]
         public async Task<ActionResult<Personagem>> ObterPersonagem(int id, CancellationToken cancellationToken = default)
         {
-            var result = await this.servicoAplicacaoMarvel.ObterPersonagem(id, cancellationToken);
+            try
+            {
+                var result = await this.servicoAplicacaoMarvel.ObterPersonagem(id, cancellationToken);
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (System.Exception ex)
+            {
+                if (ex.Message == "404")
+                    return NotFound();
+
+                return null;
+            }
         }
 
         [HttpGet("obterpersonagem/{id}/quadrinhos")]
