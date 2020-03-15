@@ -1,0 +1,262 @@
+1) >> Após instalar a última versão do postgreSQL, utilize o "SQL Shell" para criar o database 'marvel' com o comando
+
+CREATE DATABASE marvel;
+
+2) >> RODAR SCRIPTS PARA CRIAR E POPULAR TABELAS
+
+--------------------- 
+
+DROP TABLE IF EXISTS evento;
+DROP TABLE IF EXISTS historia;
+DROP TABLE IF EXISTS quadrinho;
+DROP TABLE IF EXISTS serie;
+DROP TABLE IF EXISTS personagem;
+
+CREATE TABLE personagem
+(
+  id integer,
+  name varchar,
+  description varchar,
+  modified timestamp without time zone,
+  thumbnail varchar
+);
+
+CREATE TABLE evento
+(
+  id integer not null,
+  title varchar,
+  description varchar,
+  resourceURI varchar,
+  start varchar,
+  "end" varchar,
+  thumbnail varchar
+);
+
+CREATE TABLE historia
+(
+  id integer not null,
+  title varchar,
+  description varchar,
+  resourceURI varchar,
+  "type" varchar,
+  modified timestamp without time zone,
+  thumbnail varchar
+);
+
+CREATE TABLE quadrinho
+(
+  id integer not null,
+  digitalid integer,
+  title varchar,
+  issuenumber integer,
+  variantdescription varchar,
+  description varchar,
+  modified timestamp without time zone,
+  isbn varchar,
+  upc varchar,
+  diamondcode varchar,
+  ean varchar,
+  issn varchar,
+  format varchar,
+  pagecount integer,
+  resourceuri varchar
+);
+
+CREATE TABLE serie
+(
+  id integer not null,
+  title varchar,
+  description varchar,
+  resourceURI varchar,
+  startyear integer,
+  endyear integer,
+  rating varchar,
+  "type" varchar,
+  modified timestamp without time zone,
+  thumbnail varchar
+);
+
+ALTER TABLE personagem ADD CONSTRAINT fk PRIMARY KEY(id);
+
+ALTER TABLE evento
+ADD COLUMN idcharacter INTEGER,
+ADD CONSTRAINT evento_001_fk FOREIGN KEY (idcharacter)
+REFERENCES personagem (id)
+ON UPDATE CASCADE
+ON DELETE CASCADE;
+
+ALTER TABLE historia
+ADD COLUMN idcharacter INTEGER,
+ADD CONSTRAINT historia_001_fk FOREIGN KEY (idcharacter)
+REFERENCES personagem (id)
+ON UPDATE CASCADE
+ON DELETE CASCADE;
+
+ALTER TABLE quadrinho
+ADD COLUMN idcharacter INTEGER,
+ADD CONSTRAINT quadrinho_001_fk FOREIGN KEY (idcharacter)
+REFERENCES personagem (id)
+ON UPDATE CASCADE
+ON DELETE CASCADE;
+
+ALTER TABLE serie
+ADD COLUMN idcharacter INTEGER,
+ADD CONSTRAINT serie_001_fk FOREIGN KEY (idcharacter)
+REFERENCES personagem (id)
+ON UPDATE CASCADE
+ON DELETE CASCADE;
+
+--------------------- 
+
+
+--------------------- PERSONAGENS
+
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1011334,'3-D Man',NULL,'2014-04-29T15:18:17-03:00','http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1017100,'A-Bomb (HAS)','Rick Jones has been Hulk''s best bud since day one, but now he''s more than a friend...he''s a teammate! Transformed by a Gamma energy explosion, A-Bomb''s thick, armored skin is just as strong and powerful as it is blue. And when he curls into action, he uses it like a giant bowling ball of destruction!','2013-09-18T16:54:04-03:00','http://i.annihil.us/u/prod/marvel/i/mg/3/20/5232158de5b16');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1009144,'A.I.M.','AIM is a terrorist organization bent on destroying the world.','2013-10-17T15:41:30-03:00','http://i.annihil.us/u/prod/marvel/i/mg/6/20/52602f21f29ec');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1010699,'Aaron Stack',NULL,'1969-12-31T22:00:00-02:00','http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1009146,'Abomination (Emil Blonsky)','Formerly known as Emil Blonsky, a spy of Soviet Yugoslavian origin working for the KGB, the Abomination gained his powers after receiving a dose of gamma radiation similar to that which transformed Bruce Banner into the incredible Hulk.','2012-03-20T13:32:12-03:00','http://i.annihil.us/u/prod/marvel/i/mg/9/50/4ce18691cbf04');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1016823,'Abomination (Ultimate)',NULL,'2012-07-10T20:11:52-03:00','http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1009148,'Absorbing Man',NULL,'2013-10-24T16:32:08-02:00','http://i.annihil.us/u/prod/marvel/i/mg/1/b0/5269678709fb7');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1009149,'Abyss',NULL,'2014-04-29T15:10:43-03:00','http://i.annihil.us/u/prod/marvel/i/mg/9/30/535feab462a64');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1010903,'Abyss (Age of Apocalypse)',NULL,'1969-12-31T22:00:00-02:00','http://i.annihil.us/u/prod/marvel/i/mg/3/80/4c00358ec7548');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1011266,'Adam Destine',NULL,'1969-12-31T22:00:00-02:00','http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1010354,'Adam Warlock','Adam Warlock is an artificially created human who was born in a cocoon at a scientific complex called The Beehive.','2013-08-07T14:49:06-03:00','http://i.annihil.us/u/prod/marvel/i/mg/a/f0/5202887448860');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1010846,'Aegis (Trey Rollins)',NULL,'1969-12-31T22:00:00-02:00','http://i.annihil.us/u/prod/marvel/i/mg/5/e0/4c0035c9c425d');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1011297,'Agent Brand',NULL,'2013-10-24T15:09:30-02:00','http://i.annihil.us/u/prod/marvel/i/mg/4/60/52695285d6e7e');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1011031,'Agent X (Nijo)','Originally a partner of the mind-altering assassin Black Swan, Nijo spied on Deadpool as part of the Swan''s plan to exact revenge for Deadpool falsely taking credit for the Swan''s assassination of the Four Winds crime family, which included Nijo''s brother.','1969-12-31T22:00:00-02:00','http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1009150,'Agent Zero',NULL,'1969-12-31T22:00:00-02:00','http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c0042121d790');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1011198,'Agents of Atlas',NULL,'2016-02-03T13:25:22-02:00','http://i.annihil.us/u/prod/marvel/i/mg/9/a0/4ce18a834b7f5');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1011175,'Aginar',NULL,'1969-12-31T22:00:00-02:00','http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1011136,'Air-Walker (Gabriel Lan)',NULL,'1969-12-31T22:00:00-02:00','http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1011176,'Ajak',NULL,'1969-12-31T22:00:00-02:00','http://i.annihil.us/u/prod/marvel/i/mg/2/80/4c002f35c5215');
+INSERT INTO personagem(id,name,description,modified,thumbnail) VALUES (1010870,'Ajaxis',NULL,'1969-12-31T22:00:00-02:00','http://i.annihil.us/u/prod/marvel/i/mg/b/70/4c0035adc7d3a');
+
+--------------------- QUADRINHOS - 1011334
+
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (22506,10949,'Avengers: The Initiative (2007) #19',19,NULL,'Join 3-D MAN, CLOUD 9, KOMODO, HARDBALL, and heroes around America in the battle that will decide the fate of the planet and the future of the Initiative program. Will the Kill Krew Army win the day?','2015-10-27T18:38:23-02:00',NULL,'5960606084-01911','SEP082362',NULL,NULL,'Comic',32,'http://gateway.marvel.com/v1/public/comics/22506', 1011334);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (22300,0,'Avengers: The Initiative (2007) #18 (ZOMBIE VARIANT)',18,'ZOMBIE VARIANT','SECRET INVASION TIE-IN!
+<br>THE EXPLOSIVE FINALE STARTS HERE!
+<br>Now that the KILL KREW knows Skrullowjacket''s master plan, can they stop the TRUE purpose of the Fifty State Initiative? Plus:  It''s THOR GIRL vs. ULTRA GIRL!  One is more than she appears to be... and the other''s a Skrull. And, after fourteen issues, are we REALLY going to unmask MUTANT ZERO?!
+<br>Rated T+ ...$2.99
+<br>',null,NULL,'5960606084-01821','AUG082378',NULL,NULL,'Comic',32,'http://gateway.marvel.com/v1/public/comics/22300', 1011334);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (22299,10948,'Avengers: The Initiative (2007) #18',18,NULL,'Now that the Kill Krew knows Skrullowjacket''s master plan, can they stop the true mission of the Fifty State Initiative? Plus, Thor Girl vs. Ultra Girl! One is more than she appears to be and the other''s a Skrull!','2014-08-05T15:09:33-03:00',NULL,'5960606084-01811','AUG082377',NULL,NULL,'Comic',32,'http://gateway.marvel.com/v1/public/comics/22299', 1011334);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (21975,10721,'Avengers: The Initiative (2007) #17',17,NULL,'Join Mutant Zero, Trauma, Bengal, Constrictor, and Ant-Man as they undertake this war''s most dangerous mission: to take out the Skrull Spider-Woman! Plus, a new Avenger and more clues as to Mutant Zero''s identity!','2014-08-05T15:09:31-03:00',NULL,'5960606084-01711','JUL082310',NULL,NULL,'Comic',32,'http://gateway.marvel.com/v1/public/comics/21975', 1011334);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (21741,10718,'Avengers: The Initiative (2007) #16',16,NULL,'The Skrull Kill Krew is back! And they''re ready to kill, maim, torture, and butcher every mother lovin'' Skrull out there! Also, back at Camp Hammond, Ant-Man is in a giant world of trouble.','2014-08-05T15:09:28-03:00',NULL,'5960606084-01611','JUN082352',NULL,NULL,'Comic',32,'http://gateway.marvel.com/v1/public/comics/21741', 1011334);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (21546,10716,'Avengers: The Initiative (2007) #15',15,NULL,'It''s up to the Initiative to face off against the first major Skrull strike force! And on the battle field, the cadet with the biggest secret has to choose which side he''s really on. Plus, a new low for Ant-Man and a new danger for War Machine!','2014-08-05T15:09:27-03:00',NULL,'5960606084-01511','MAY082306',NULL,NULL,'Comic',32,'http://gateway.marvel.com/v1/public/comics/21546', 1011334);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (21366,10715,'Avengers: The Initiative (2007) #14',14,NULL,'The fates of The Initiative, the United States, and Planet Earth hang in the balance. Plus: Former Avenger, Delroy Garret, assumes the mantle and arsenal of Earth''s greatest Skrull-Hunter, The 3-D Man.','2014-08-05T15:09:26-03:00',NULL,'5960606084-01411','APR082297',NULL,NULL,'Comic',32,'http://gateway.marvel.com/v1/public/comics/21366', 1011334);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (24571,0,'Avengers: The Initiative (2007) #14 (SPOTLIGHT VARIANT)',14,'SPOTLIGHT VARIANT',NULL,'1998-11-30T00:00:00-0500',NULL,'5960606084-01421',NULL,NULL,NULL,'Comic',32,'http://gateway.marvel.com/v1/public/comics/24571', 1011334);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (8500,23291,'Deadpool (1997) #44',44,NULL,NULL,'2013-06-05T12:24:31-03:00',NULL,NULL,NULL,NULL,NULL,'Comic',0,'http://gateway.marvel.com/v1/public/comics/8500', 1011334);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (10225,0,'Marvel Premiere (1972) #37',37,NULL,NULL,'2005-11-30T00:00:00-0500',NULL,NULL,NULL,NULL,NULL,'Comic',0,'http://gateway.marvel.com/v1/public/comics/10225', 1011334);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (10224,0,'Marvel Premiere (1972) #36',36,NULL,NULL,'2005-11-30T00:00:00-0500',NULL,NULL,NULL,NULL,NULL,'Comic',0,'http://gateway.marvel.com/v1/public/comics/10224', 1011334);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (10223,0,'Marvel Premiere (1972) #35',35,NULL,NULL,'2005-11-30T00:00:00-0500',NULL,NULL,NULL,NULL,NULL,'Comic',36,'http://gateway.marvel.com/v1/public/comics/10223', 1011334);
+
+------------ EVENTOS - 1011334
+INSERT INTO evento(id,title,description,resourceURI,start,"end",thumbnail, idcharacter) VALUES (269,'Secret Invasion','The shape-shifting Skrulls have been infiltrating the Earth for years, replacing many of Marvel''s heroes with impostors, setting the stage for an all-out invasion.','http://gateway.marvel.com/v1/public/events/269','2008-06-02 00:00:00','2009-01-25 00:00:00','http://i.annihil.us/u/prod/marvel/i/mg/6/70/51ca1749980ae', 1011334);
+
+------------ SERIES - 1011334
+INSERT INTO serie(id,title,description,resourceURI,startYear,endYear,rating,type,modified,thumbnail, idcharacter) VALUES (1945,'Avengers: The Initiative (2007 - 2010)',NULL,'http://gateway.marvel.com/v1/public/series/1945',2007,2010,'T',NULL,'2013-03-20T18:51:27-03:00','http://i.annihil.us/u/prod/marvel/i/mg/5/a0/514a2ed3302f5', 1011334);
+INSERT INTO serie(id,title,description,resourceURI,startYear,endYear,rating,type,modified,thumbnail, idcharacter) VALUES (2005,'Deadpool (1997 - 2002)','Wade Wilson: Heartless Merc With a Mouth or...hero? Laugh, cry and applaud at full volume for the mind-bending adventures of Deadpool, exploring the psyche and crazed adventures of Marvel''s most unstable personality!','http://gateway.marvel.com/v1/public/series/2005',1997,2002,NULL,NULL,'2017-05-30T18:08:43-03:00','http://i.annihil.us/u/prod/marvel/i/mg/7/03/5130f646465e3', 1011334);
+INSERT INTO serie(id,title,description,resourceURI,startYear,endYear,rating,type,modified,thumbnail, idcharacter) VALUES (2045,'Marvel Premiere (1972 - 1981)',NULL,'http://gateway.marvel.com/v1/public/series/2045',1972,1981,NULL,NULL,'2018-03-01T15:17:00-03:00','http://i.annihil.us/u/prod/marvel/i/mg/4/40/5a98437953d4e', 1011334);
+
+------------ HISTÓRIAS - 1011334
+
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (19947,'Cover #19947',NULL,'http://gateway.marvel.com/v1/public/stories/19947','cover','1969-12-31T22:00:00-02:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (19948,'The 3-D Man!',NULL,'http://gateway.marvel.com/v1/public/stories/19948','story','1969-12-31T22:00:00-02:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (19949,'Cover #19949',NULL,'http://gateway.marvel.com/v1/public/stories/19949','cover','1969-12-31T22:00:00-02:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (19950,'The Devil''s Music!',NULL,'http://gateway.marvel.com/v1/public/stories/19950','story','1969-12-31T22:00:00-02:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (19951,'Cover #19951',NULL,'http://gateway.marvel.com/v1/public/stories/19951','cover','1969-12-31T22:00:00-02:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (19952,'Code-Name:  The Cold Warrior!',NULL,'http://gateway.marvel.com/v1/public/stories/19952','story','1969-12-31T22:00:00-02:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (47184,'AVENGERS: THE INITIATIVE (2007) #14',NULL,'http://gateway.marvel.com/v1/public/stories/47184','cover','2017-03-29T12:15:50-03:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (47185,'Avengers: The Initiative (2007) #14 - Int',NULL,'http://gateway.marvel.com/v1/public/stories/47185','story','2011-10-11T16:12:07-03:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (47498,'AVENGERS: THE INITIATIVE (2007) #15',NULL,'http://gateway.marvel.com/v1/public/stories/47498','cover','2017-03-29T13:06:03-03:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (47499,'Avengers: The Initiative (2007) #15 - Int',NULL,'http://gateway.marvel.com/v1/public/stories/47499','story','2011-10-11T16:33:45-03:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (47792,'AVENGERS: THE INITIATIVE (2007) #16',NULL,'http://gateway.marvel.com/v1/public/stories/47792','cover','2017-03-30T10:08:35-03:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (47793,'Avengers: The Initiative (2007) #16 - Int',NULL,'http://gateway.marvel.com/v1/public/stories/47793','story','2011-10-11T16:46:06-03:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (48361,'AVENGERS: THE INITIATIVE (2007) #17',NULL,'http://gateway.marvel.com/v1/public/stories/48361','cover','2017-03-30T10:15:37-03:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (48362,'Avengers: The Initiative (2007) #17 - Int',NULL,'http://gateway.marvel.com/v1/public/stories/48362','story','2011-10-11T16:55:57-03:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (49103,'AVENGERS: THE INITIATIVE (2007) #18',NULL,'http://gateway.marvel.com/v1/public/stories/49103','cover','2017-03-30T10:26:24-03:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (49104,'Avengers: The Initiative (2007) #18 - Int',NULL,'http://gateway.marvel.com/v1/public/stories/49104','story','2011-10-11T17:06:31-03:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (49106,'Avengers: The Initiative (2007) #18, Zombie Variant - Int',NULL,'http://gateway.marvel.com/v1/public/stories/49106','story','2011-10-11T17:14:34-03:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (49888,'AVENGERS: THE INITIATIVE (2007) #19',NULL,'http://gateway.marvel.com/v1/public/stories/49888','cover','2017-03-30T10:34:22-03:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (49889,'Avengers: The Initiative (2007) #19 - Int',NULL,'http://gateway.marvel.com/v1/public/stories/49889','story','2011-10-11T17:44:43-03:00',NULL, 1011334);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (54371,'Avengers: The Initiative (2007) #14, Spotlight Variant - Int',NULL,'http://gateway.marvel.com/v1/public/stories/54371','story','2011-10-11T15:57:12-03:00',NULL, 1011334);
+
+---------------------
+--
+--------------------- QUADRINHOS - 1009150
+
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (3357,0,'Weapon X: Days of Future Now (Trade Paperback)',1,NULL,'Weapon X is back! The War of the Programs is over; now, Director Malcolm Colcord is ready to take his plans to the next level! It''s the Weapon X you love - only now, all bets are off. Witness the beginning of the end of Frank Tieri''s Weapon X saga! Starring Agent Zero, Fantomex, Sublime, Chamber and, of course, Wolverine! Collects WEAPON X: DAYS OF FUTURE NOW #1-5.
+<br>120 PGS./Rated T+ SUGGESTED FOR TEENS AND UP ...$13.99
+<br>ISBN: 0-7851-1749-0
+<br>','2019-12-03T14:00:29-03:00','978-0-7851-1749-0','75960611749900111','NOV052025','9780785 117490 51399',NULL,'Trade Paperback',0,'http://gateway.marvel.com/v1/public/comics/3357', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (3016,2757,'Weapon X: Days of Future Now (2005) #5',5,NULL,'It all comes down to this! The Weapon X saga reaches its violent end. Who will be left standing, and at what cost?! 
+<br>32 PGS./T+ SUGGESTED FOR TEENS AND UP ...$2.99
+<br>','2015-11-30T00:00:00-0500',NULL,'5960605693-00511',NULL,NULL,NULL,'Comic',32,'http://gateway.marvel.com/v1/public/comics/3016', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (2439,2756,'Weapon X: Days of Future Now (2005) #4',4,NULL,'All hail the return of Lord Magnus! Magneto returns and not a moment too soon, as Mutantkind is ready to sacrifice anything to save itself. It''s the future, Weapon X style, and you know what that means...violence, death, and Frank Tieri! 
+<br>
+<br>32 PGS./T+ SUGGESTED FOR TEENS AND UP ...$2.99
+<br>','2015-11-30T00:00:00-0500',NULL,'5960605693-00411',NULL,NULL,NULL,'Comic',0,'http://gateway.marvel.com/v1/public/comics/2439', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (2324,2754,'Weapon X: Days of Future Now (2005) #2',2,NULL,'In this issue, an X-Man dies!  Ah, heck, who are we kidding? A whole bucketload of X-Men die! The Director''s mad pursuit of power continues and no one is going to stand in his way. Frank Tieri''s Weapon X saga rockets into the future and where it''s going even we don''t know! 
+<br>32 PGS./T+ SUGGESTED FOR TEENS AND UP ...$2.99
+<br>','2018-02-21T15:19:42-03:00',NULL,'75960605693400211','SEP051969',NULL,NULL,'Comic',0,'http://gateway.marvel.com/v1/public/comics/2324', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (2438,2755,'Weapon X: Days of Future Now (2005) #3',3,NULL,'The Weapon X saga continues to catapult you into the future! Agent Zero finally learns the awful truth of what happened to the Neverland death camps! Plus this issue also sees the debut of the all-new-you better believe it-all-different X-Men! 
+<br>
+<br>
+<br>32 PGS./T+ SUGGESTED FOR TEENS AND UP ...$2.99
+<br>','2015-11-30T00:00:00-0500',NULL,'5960605693-00311',NULL,NULL,NULL,'Comic',0,'http://gateway.marvel.com/v1/public/comics/2438', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (2204,98,'Weapon X: Days of Future Now (2005) #1',1,NULL,'Because you demanded it, Weapon X is back! The War of the Programs is over and now Director Malcolm Colcord is ready to take his plans to the next level! It''s the Weapon X you love, only now, all bets are off. Witness the beginning of the end of Frank Tieri''s Weapon X saga! Starring Agent Zero, Fantomex, Sublime, Chamber, and of course, Wolverine!
+<br>32 PGS./T+ SUGGESTED FOR TEENS AND UP ...$2.99
+<br>','2015-11-30T00:00:00-0500',NULL,'5960605693-00111',NULL,NULL,NULL,'Comic',0,'http://gateway.marvel.com/v1/public/comics/2204', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (246,7514,'Weapon X (2002) #13',13,NULL,'"THE UNDERGROUND" concludes! 
+Amidst betrayals and revelations, in order to survive the agents of Weapon X must choose sides and forge alliances - as the mystery menace among them stands revealed! A storyline so big it needed an extra issue!
+32 PGS./MARVEL PG...$2.99','2015-11-30T00:00:00-0500',NULL,'5960604716-50011',NULL,NULL,NULL,'Comic',0,'http://gateway.marvel.com/v1/public/comics/246', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (18074,7513,'Weapon X (2002) #12',12,NULL,NULL,'2015-11-30T00:00:00-0500',NULL,'75960605372801211','JUN031609',NULL,NULL,'Comic',0,'http://gateway.marvel.com/v1/public/comics/18074', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (18092,7533,'Weapon X (2002) #3',3,NULL,'Agent Zero goes hunting for Sabretooth!','2016-02-10T21:37:37-02:00',NULL,NULL,NULL,NULL,NULL,'Comic',0,'http://gateway.marvel.com/v1/public/comics/18092', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (18082,7522,'Weapon X (2002) #2',2,NULL,NULL,'2016-05-31T16:14:13-03:00',NULL,'75960605372800211','AUG021504',NULL,NULL,'Comic',0,'http://gateway.marvel.com/v1/public/comics/18082', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (18408,7545,'WEAPON X: THE DRAFT - AGENT ZERO 1 (2002) #1',1,NULL,NULL,'2015-11-30T00:00:00-0500',NULL,'75960605376600111','JUN021704',NULL,NULL,'Comic',0,'http://gateway.marvel.com/v1/public/comics/18408', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (14121,45652,'Wolverine (1988) #176',176,NULL,'Prepare to be shocked by who Wolverine is confronted by in this thrilling issue!','2019-05-30T10:56:38-03:00',NULL,'759606022541017611','MAR021668',NULL,NULL,'Comic',0,'http://gateway.marvel.com/v1/public/comics/14121', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (14110,7615,'Wolverine (1988) #166',166,NULL,NULL,'2015-11-30T00:00:00-0500',NULL,'759606022541016611','MAY011648',NULL,NULL,'Comic',52,'http://gateway.marvel.com/v1/public/comics/14110', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (14107,7612,'Wolverine (1988) #163',163,NULL,NULL,'2015-11-30T00:00:00-0500',NULL,'759606022541016311','FEB011587',NULL,NULL,'Comic',36,'http://gateway.marvel.com/v1/public/comics/14107', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (1023,0,'Wolverine/Deadpool: Weapon X (Trade Paperback)',0,NULL,'When Wolverine rebuffs the reconstituted Weapon X program, management is forced to settle for second best'' but Deadpool''s first assignment may test the limits of his loyalty.','2016-12-08T18:58:41-02:00','0-7851-0918-8',NULL,NULL,NULL,NULL,'Trade Paperback',240,'http://gateway.marvel.com/v1/public/comics/1023', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (18176,0,'X-Man (1995) #-1',-1,NULL,NULL,'2016-09-20T12:11:27-03:00',NULL,NULL,NULL,NULL,NULL,'Comic',44,'http://gateway.marvel.com/v1/public/comics/18176', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (18116,0,'X-Men Unlimited (1993) #15',15,NULL,NULL,'2015-11-30T00:00:00-0500',NULL,NULL,NULL,NULL,NULL,'Comic',68,'http://gateway.marvel.com/v1/public/comics/18116', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (14211,40550,'Wolverine (1988) #87',87,NULL,NULL,'2015-11-30T00:00:00-0500',NULL,NULL,NULL,NULL,NULL,'Comic',36,'http://gateway.marvel.com/v1/public/comics/14211', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (18132,36699,'X-Men Unlimited (1993) #3',3,NULL,'Former Weapon-X project Maverick begins his merciless hunt for Sabretooth. Will the X-Men be able to assist in his endeavor? And with Wolverine in Japan, will the news of Creed’s rampage reach Logan too late? Guest-starring Rogue, Bishop, and Gambit, as they try to stop Sabretooth dead in his tracks!','2017-01-19T12:01:36-02:00',NULL,NULL,NULL,NULL,NULL,'Comic',68,'http://gateway.marvel.com/v1/public/comics/18132', 1009150);
+INSERT INTO quadrinho(id,digitalId,title,issueNumber,variantDescription,description,modified,isbn,upc,diamondCode,ean,issn,format,pageCount,resourceURI, idcharacter) VALUES (14190,0,'Wolverine (1988) #68',68,NULL,NULL,'2015-11-30T00:00:00-0500',NULL,NULL,NULL,NULL,NULL,'Comic',36,'http://gateway.marvel.com/v1/public/comics/14190', 1009150);
+
+--------------------- EVENTOS - 1009150
+-- NADA
+
+--------------------- SÉRIES - 1009150
+INSERT INTO serie(id,title,description,resourceURI,startYear,endYear,rating,type,modified,thumbnail, idcharacter) VALUES (543,'Weapon X (2002 - 2004)',NULL,'http://gateway.marvel.com/v1/public/series/543',2002,2004,'MARVEL PSR',NULL,'2015-11-30T00:00:00-0500','http://i.annihil.us/u/prod/marvel/i/mg/7/00/4bb66fe856148', 1009150);
+INSERT INTO serie(id,title,description,resourceURI,startYear,endYear,rating,type,modified,thumbnail, idcharacter) VALUES (1478,'Weapon X: Days of Future Now (2006)',NULL,'http://gateway.marvel.com/v1/public/series/1478',2006,2006,'T+','collection','2015-11-30T00:00:00-0500','http://i.annihil.us/u/prod/marvel/i/mg/8/50/4bc6224ac1d31', 1009150);
+INSERT INTO serie(id,title,description,resourceURI,startYear,endYear,rating,type,modified,thumbnail, idcharacter) VALUES (869,'Weapon X: Days of Future Now (2005)',NULL,'http://gateway.marvel.com/v1/public/series/869',2005,2005,'T',NULL,'2015-11-30T00:00:00-0500','http://i.annihil.us/u/prod/marvel/i/mg/b/f0/4bc62eabc7524', 1009150);
+INSERT INTO serie(id,title,description,resourceURI,startYear,endYear,rating,type,modified,thumbnail, idcharacter) VALUES (3649,'WEAPON X: THE DRAFT - AGENT ZERO 1 (2002)',NULL,'http://gateway.marvel.com/v1/public/series/3649',2002,2002,NULL,NULL,'2018-02-16T12:26:37-0500','http://i.annihil.us/u/prod/marvel/i/mg/6/a0/5a8713bd974d2', 1009150);
+INSERT INTO serie(id,title,description,resourceURI,startYear,endYear,rating,type,modified,thumbnail, idcharacter) VALUES (2262,'Wolverine (1988 - 2003)','Breaking away from the X-Men, the man known as Logan pursues the most dangerous adventures he can find! See Wolverine clash with the pirates of Madripoor, the ninja hordes of Japan and the mutant-hunting Sentinels as well as grapple with his own past in this classic series!','http://gateway.marvel.com/v1/public/series/2262',1988,2003,NULL,NULL,'2015-04-01T16:34:08-0400','http://i.annihil.us/u/prod/marvel/i/mg/f/60/513112b393b41', 1009150);
+INSERT INTO serie(id,title,description,resourceURI,startYear,endYear,rating,type,modified,thumbnail, idcharacter) VALUES (84,'Wolverine/Deadpool: Weapon X (1999)',NULL,'http://gateway.marvel.com/v1/public/series/84',1999,1999,'MARVEL PSR','collection','2015-11-30T00:00:00-0500','http://i.annihil.us/u/prod/marvel/i/mg/d/60/4bc66be78d88f', 1009150);
+INSERT INTO serie(id,title,description,resourceURI,startYear,endYear,rating,type,modified,thumbnail, idcharacter) VALUES (3643,'X-Man (1995 - 2000)',NULL,'http://gateway.marvel.com/v1/public/series/3643',1995,2000,NULL,NULL,'2015-11-30T00:00:00-0500','http://i.annihil.us/u/prod/marvel/i/mg/9/a0/4bb7bc51b8966', 1009150);
+INSERT INTO serie(id,title,description,resourceURI,startYear,endYear,rating,type,modified,thumbnail, idcharacter) VALUES (2265,'X-Men (1991 - 2001)','An exciting era for Marvel''s mutants begin! With a larger team roster than ever before, the X-Men face familiar foes like Magneto, new opponents like Omega Red, and monumental threats including Onslaught and Operation: Zero Tolerance in their 90''s exploits!','http://gateway.marvel.com/v1/public/series/2265',1991,2001,NULL,NULL,'2016-06-20T12:25:37-0400','http://i.annihil.us/u/prod/marvel/i/mg/2/e0/513115de77b40', 1009150);
+INSERT INTO serie(id,title,description,resourceURI,startYear,endYear,rating,type,modified,thumbnail, idcharacter) VALUES (3637,'X-Men Unlimited (1993 - 2003)',NULL,'http://gateway.marvel.com/v1/public/series/3637',1993,2003,NULL,NULL,'2019-09-30T13:58:59-0400','http://i.annihil.us/u/prod/marvel/i/mg/6/70/5d9209fa2a537', 1009150);
+
+--------------------- HISTORIAS - 1009150
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (1131,'WEAPON X (2002) #13',NULL,'http://gateway.marvel.com/v1/public/stories/1131','cover','2017-06-16T11:49:36-03:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (4603,'1 of 5 - 5XLS',NULL,'http://gateway.marvel.com/v1/public/stories/4603','story','2019-12-02T14:43:34-03:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (4605,'2 of 5 - 5XLS',NULL,'http://gateway.marvel.com/v1/public/stories/4605','story','2019-12-03T11:20:29-03:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (4606,'3 of 5 - 5XLS',NULL,'http://gateway.marvel.com/v1/public/stories/4606','cover','2019-12-03T11:43:49-03:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (4608,'4 of 5 - 5XLS',NULL,'http://gateway.marvel.com/v1/public/stories/4608','cover','2019-12-03T13:10:23-03:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (4610,'5 of 5 - 5XLS',NULL,'http://gateway.marvel.com/v1/public/stories/4610','cover','2019-12-03T13:59:08-03:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (28706,'The Hunted Part 2',NULL,'http://gateway.marvel.com/v1/public/stories/28706','story','1969-12-31T22:00:00-02:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (28712,'The Hunted Part 5','Wolverine is taken to the Weapon X Project and his true memories are restored.','http://gateway.marvel.com/v1/public/stories/28712','story','1969-12-31T22:00:00-02:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (28738,'The Logan Files Epilogue','After being killed last issue, Wolvie is guided through an afterlife of memories by an old love and winds up fighting a band of dead enemies with his recently deceased pal, Colossus.','http://gateway.marvel.com/v1/public/stories/28738','story','1969-12-31T22:00:00-02:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (28881,'Counting Coup',NULL,'http://gateway.marvel.com/v1/public/stories/28881','story','1969-12-31T22:00:00-02:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (28883,'Nightmare Quest!','Wolvie has some serious and confusing flashbacks as all of his memories seem interchangeable; John Wraith tells Wolvie that Silver Fox is still alive.','http://gateway.marvel.com/v1/public/stories/28883','story','1969-12-31T22:00:00-02:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (28885,'Reunion!',NULL,'http://gateway.marvel.com/v1/public/stories/28885','story','1969-12-31T22:00:00-02:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (28887,'Bastions of Glory!',NULL,'http://gateway.marvel.com/v1/public/stories/28887','story','1969-12-31T22:00:00-02:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (28889,'What Goes Around...','Sabretooth kills Silver Fox (again).','http://gateway.marvel.com/v1/public/stories/28889','story','1969-12-31T22:00:00-02:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (28895,'Valley O'' Death',NULL,'http://gateway.marvel.com/v1/public/stories/28895','story','1969-12-31T22:00:00-02:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (28897,'Epsilon Red',NULL,'http://gateway.marvel.com/v1/public/stories/28897','story','1969-12-31T22:00:00-02:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (28941,'Showdown In Lowtown',NULL,'http://gateway.marvel.com/v1/public/stories/28941','story','1969-12-31T22:00:00-02:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (29125,'Last Stand',NULL,'http://gateway.marvel.com/v1/public/stories/29125','story','1969-12-31T22:00:00-02:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (29139,'Over...Again',NULL,'http://gateway.marvel.com/v1/public/stories/29139','story','1969-12-31T22:00:00-02:00',NULL, 1009150);
+INSERT INTO historia(id,title,description,resourceURI,type,modified,thumbnail, idcharacter) VALUES (38511,'Second Contact','Chris Bradley returns and is helped by Maverick.','http://gateway.marvel.com/v1/public/stories/38511','story','1969-12-31T22:00:00-02:00',NULL, 1009150);

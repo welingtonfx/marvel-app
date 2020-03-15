@@ -3,8 +3,10 @@ using AutoFixture;
 using Dominio.Interface.Infra;
 using Dominio.Model.Personagem;
 using Dominio.Model.Personagens;
+using Dominio.ViewModel;
 using Moq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -34,7 +36,7 @@ namespace Test.Aplicacao.Test
 
             var result = await _servicoAplicacaoMarvel.ObterPersonagens(It.IsAny<CancellationToken>());
 
-            Assert.IsType<Personagens>(result);
+            Assert.IsType<List<PersonagensViewModel>>(result.ToList());
 
             Assert.NotNull(result);
         }

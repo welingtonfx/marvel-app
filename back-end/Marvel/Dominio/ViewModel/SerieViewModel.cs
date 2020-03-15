@@ -13,7 +13,7 @@ namespace Dominio.ViewModel
         public int endYear { get; set; }
         public string rating { get; set; }
         public string type { get; set; }
-        public DateTime modified { get; set; }
+        public string modified { get; set; }
         public string thumbnail { get; set; }
 
         public static explicit operator SerieViewModel(ResultSeries s)

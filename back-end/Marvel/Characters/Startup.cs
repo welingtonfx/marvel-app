@@ -46,9 +46,7 @@ namespace Characters
                         Description = "APIs - marvel",
                         Contact = new OpenApiContact
                         {
-                            Name = "Welington",
-                            //Url = new Uri("")
-                        }
+                            Name = "Marvel API"}
                     });
 
                 ///var commentFileName = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -66,6 +64,8 @@ namespace Characters
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddScoped<IRepositorioMarvel, RepositorioMarvel>();
             services.AddScoped<IServicoAplicacaoMarvel, ServicoAplicacaoMarvel>();
+            services.AddScoped<IRepositorioMarvelDB, RepositorioMarvelDB>();
+            services.AddScoped<IServicoAplicacaoMarvelDB, ServicoAplicacaoMarvelDB>();
             services.AddScoped<IMarvelHasher, MarvelHasher>();
             services.AddScoped<IMarvelAPIConnector, MarvelAPIConnector>();
 

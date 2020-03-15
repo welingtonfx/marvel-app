@@ -14,7 +14,7 @@ namespace Dominio.Model.Series
         public int endYear { get; set; }
         public string rating { get; set; }
         public string type { get; set; }
-        public DateTime modified { get; set; }
+        public string modified { get; set; }
         public Thumbnail thumbnail { get; set; }
         public Creators creators { get; set; }
         public Characters characters { get; set; }
