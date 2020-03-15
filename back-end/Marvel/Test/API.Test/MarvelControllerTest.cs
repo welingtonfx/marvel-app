@@ -24,16 +24,81 @@ namespace Test.API.Test
         }
 
         [Fact]
-        public async Task Should()
+        public async Task RotaPersonagensDeveRetornarTiposCorretos()
         {
             var personagens = _fixture.CreateMany<PersonagensViewModel>();
 
             servicoAplicacaoMarvel.Setup(p => p.ObterPersonagens(It.IsAny<CancellationToken>())).ReturnsAsync(personagens);
 
-            var result = await personagemController.ObterPersonagens(It.IsAny<CancellationToken>());
+            var retorno = await personagemController.ObterPersonagens(It.IsAny<CancellationToken>());
 
-            Assert.IsType<ActionResult<IEnumerable<PersonagensViewModel>>>(result);
-            Assert.IsType<OkObjectResult>(result.Result);
+            Assert.IsType<ActionResult<IEnumerable<PersonagensViewModel>>>(retorno);
+            Assert.IsType<OkObjectResult>(retorno.Result);
+        }
+
+        [Fact]
+        public async Task RotaPersonagemDeveRetornarTiposCorretos()
+        {
+            var personagem = _fixture.CreateMany<PersonagemViewModel>();
+
+            servicoAplicacaoMarvel.Setup(p => p.ObterPersonagem(It.IsAny<int>(), It.IsAny<CancellationToken>())).ReturnsAsync(personagem);
+
+            var retorno = await personagemController.ObterPersonagem(It.IsAny<int>(), It.IsAny<CancellationToken>());
+
+            Assert.IsType<ActionResult<IEnumerable<PersonagemViewModel>>>(retorno);
+            Assert.IsType<OkObjectResult>(retorno.Result);
+        }
+
+        [Fact]
+        public async Task RotaEventosDeveRetornarTiposCorretos()
+        {
+            var eventos = _fixture.CreateMany<EventoViewModel>();
+
+            servicoAplicacaoMarvel.Setup(p => p.ObterEventos(It.IsAny<int>(), It.IsAny<CancellationToken>())).ReturnsAsync(eventos);
+
+            var retorno = await personagemController.ObterEventos(It.IsAny<int>(), It.IsAny<CancellationToken>());
+
+            Assert.IsType<ActionResult<IEnumerable<EventoViewModel>>>(retorno);
+            Assert.IsType<OkObjectResult>(retorno.Result);
+        }
+
+        [Fact]
+        public async Task RotaQuadrinhosDeveRetornarTiposCorretos()
+        {
+            var eventos = _fixture.CreateMany<QuadrinhoViewModel>();
+
+            servicoAplicacaoMarvel.Setup(p => p.ObterQuadrinhos(It.IsAny<int>(), It.IsAny<CancellationToken>())).ReturnsAsync(eventos);
+
+            var retorno = await personagemController.ObterQuadrinhos(It.IsAny<int>(), It.IsAny<CancellationToken>());
+
+            Assert.IsType<ActionResult<IEnumerable<QuadrinhoViewModel>>>(retorno);
+            Assert.IsType<OkObjectResult>(retorno.Result);
+        }
+
+        [Fact]
+        public async Task RotaHistoriasDeveRetornarTiposCorretos()
+        {
+            var eventos = _fixture.CreateMany<HistoriaViewModel>();
+
+            servicoAplicacaoMarvel.Setup(p => p.ObterHistorias(It.IsAny<int>(), It.IsAny<CancellationToken>())).ReturnsAsync(eventos);
+
+            var retorno = await personagemController.ObterHistorias(It.IsAny<int>(), It.IsAny<CancellationToken>());
+
+            Assert.IsType<ActionResult<IEnumerable<HistoriaViewModel>>>(retorno);
+            Assert.IsType<OkObjectResult>(retorno.Result);
+        }
+
+        [Fact]
+        public async Task RotaSeriesDeveRetornarTiposCorretos()
+        {
+            var eventos = _fixture.CreateMany<SerieViewModel>();
+
+            servicoAplicacaoMarvel.Setup(p => p.ObterSeries(It.IsAny<int>(), It.IsAny<CancellationToken>())).ReturnsAsync(eventos);
+
+            var retorno = await personagemController.ObterSeries(It.IsAny<int>(), It.IsAny<CancellationToken>());
+
+            Assert.IsType<ActionResult<IEnumerable<SerieViewModel>>>(retorno);
+            Assert.IsType<OkObjectResult>(retorno.Result);
         }
     }
 }
