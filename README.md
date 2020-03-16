@@ -22,7 +22,7 @@ Há possibilidade de obter os dados de duas fontes de dados diferentes:</p>
 <p>Para utilizar o app offline, é necessário <b>instalar</b> a última versão do <b>PostgreSQL</b> (https://www.postgresql.org/download/).
 Ao instalar o PostgreSQL é recomendado manter as configurações padrão (porta, usuário, etc).</p>
 
-<p>Após instalar o PostgreSQL é necessário criar op banco de dados "marvel" e criar a estrutura e inserção de dados das tabelas (instruções abaixo)
+<p>Após instalar o PostgreSQL é necessário criar o banco de dados "marvel" e criar a estrutura e inserção de dados das tabelas (instruções abaixo)
   
 <h1>Criando o banco de dados, tabelas e inserindo dados</h1>
 <p>Utilizar o "SQL Shell" para criar o database 'marvel' com o comando:</p>
