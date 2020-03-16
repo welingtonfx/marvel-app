@@ -1,5 +1,6 @@
 ﻿using Dominio.Interface.Aplicacao;
 using Dominio.ViewModel;
+using Infra.Comum;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -30,9 +31,16 @@ namespace API.Controllers
         [HttpGet("obterpersonagem/{id}")]
         public async Task<ActionResult<IEnumerable<PersonagemViewModel>>> ObterPersonagem(int id)
         {
-            var result = await this.servicoAplicacaoMarvelDB.ObterPersonagem(id);
+            try
+            {
+                var result = await this.servicoAplicacaoMarvelDB.ObterPersonagem(id);
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (MarvelException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                return NotFound();
+            }
         }
 
         [HttpGet("obterpersonagem/{id}/quadrinhos")]

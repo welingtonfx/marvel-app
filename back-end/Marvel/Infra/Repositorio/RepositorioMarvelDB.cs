@@ -2,6 +2,7 @@
 using Dominio.Interface.Infra;
 using Dominio.Model;
 using Dominio.ViewModel;
+using Infra.Comum;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
 using System.Collections.Generic;
@@ -34,6 +35,12 @@ namespace Infra.Repositorio
             using (NpgsqlConnection conexao = new NpgsqlConnection(ConnectionString))
             {
                 var sql = @"SELECT * FROM public.personagem WHERE id = @Id";
+
+                var resultado = await conexao.QueryFirstOrDefaultAsync<PersonagemDB>(sql, new { id });
+
+                if (resultado == null)
+                    throw new MarvelException() { StatusCode = System.Net.HttpStatusCode.NotFound };
+
                 return await conexao.QueryFirstOrDefaultAsync<PersonagemDB>(sql, new { id });
             }
         }
